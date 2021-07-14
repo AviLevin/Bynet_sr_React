@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./Employees.module.css";
 import imgMale from "../../assets/imgMale.png";
 import imgFemale from "../../assets/imgFemale.png";
+import car from "../../assets/car.png";
 
 class Employees extends Component {
   constructor(props) {
@@ -25,9 +26,7 @@ class Employees extends Component {
             employees: result,
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+
         (error) => {
           this.setState({
             isLoaded: true,
@@ -38,7 +37,6 @@ class Employees extends Component {
   }
 
   render() {
-    console.log(this.state.employees.gender + "ff");
     const { error, isLoaded, employees } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -60,7 +58,7 @@ class Employees extends Component {
 
                   <img
                     className={classes.image}
-                    src={user.pic_url ? user.pic_url : this.imghandler()}
+                    src={user.pic_url ? user.pic_url : user.gender === 'Male' ? (imgMale) : imgFemale}
                   />
 
                   <br></br>
@@ -74,6 +72,13 @@ class Employees extends Component {
                       <li>gender: {user.gender}</li>
                     </ul>
                   </div>
+
+                  <br></br>
+                  <div className={classes.car}>
+                    {user.car === true ? (
+                      <img className={classes.carIcon} src={car}></img>
+                    ) : null}
+                  </div>
                 </div>
               ))}
             </div>
@@ -84,11 +89,27 @@ class Employees extends Component {
     }
   }
 
-  imghandler() {
-    let image = imgMale;
-    image = this.state.employees.gender === "Female" ? imgMale : imgFemale;
-    return image;
+  // imghandler() {
+  //   let image = imgMale;
+  //   image = this.state.employees.gender === "Female" ? imgMale : imgFemale;
+  //   return image;
+  // }
+
+  // imghandler() {
+  //   {
+  //     this.state.employees.gender === "Male" ? (
+  //       imgFemale
+  //     ) : null;
+  //   }
+  // }
+
+  carHandler() {
+    let car1 = ' color: "red"  ';
+    car1 = this.state.employees.car === "true" ? car1 : ', display: "none" ';
+    return car1;
   }
 }
 
 export default Employees;
+
+// style={  {display:"none"}  }
