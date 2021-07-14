@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Employees.module.css";
-import img1 from "../../assets/img1.png";
+import imgMale from "../../assets/imgMale.png";
+import imgFemale from "../../assets/imgFemale.png";
 
 class Employees extends Component {
   constructor(props) {
@@ -10,11 +11,12 @@ class Employees extends Component {
       error: null,
       isLoaded: false,
       employees: [],
+      imageLoadError: true,
     };
   }
 
   componentDidMount() {
-    fetch('/data.json')
+    fetch("/data.json")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -33,12 +35,10 @@ class Employees extends Component {
           });
         }
       );
-
-      
   }
 
-
   render() {
+    console.log(this.state.employees.gender + "ff");
     const { error, isLoaded, employees } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -57,21 +57,22 @@ class Employees extends Component {
                     {" "}
                     <div className={classes.name}>{user.Title} </div>{" "}
                   </div>
+
                   <img
                     className={classes.image}
-                    src={user.pic_url}
-                    alt="Card image"
-                    style={{ width: "200px" }}
+                    src={user.pic_url ? user.pic_url : this.imghandler()}
                   />
-                  <div classNameName="card-body">
-                   
-                   <ul>
-                     <li>dd</li>
-                     <li>dd</li>
-                     <li>dd</li>
-                     <li>dd</li>
-                   </ul>
-                 
+
+                  <br></br>
+
+                  <br></br>
+
+                  <div className={classes["card-body"]}>
+                    <ul>
+                      <li>city: {user.city}</li>
+                      <li>mail: {user.email}</li>
+                      <li>gender: {user.gender}</li>
+                    </ul>
                   </div>
                 </div>
               ))}
@@ -81,6 +82,12 @@ class Employees extends Component {
         </div>
       );
     }
+  }
+
+  imghandler() {
+    let image = imgMale;
+    image = this.state.employees.gender === "Female" ? imgMale : imgFemale;
+    return image;
   }
 }
 

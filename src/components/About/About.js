@@ -4,13 +4,12 @@ import classes from "./About.module.css";
 const About = () => {
   return (
     <section className={classes.summary}>
-      <h2>Order Your Food Today</h2>
+      <h2>Employees list</h2>
       <p>
-        Choose your favorite meal from our broad selection of available meals.
+        this App fetch data of employees from Api 
       </p>
       <p>
-        All our meals are cooked with high-quality Kosher ingredients,
-        just-in-time and of course by experienced chefs!
+        using react and vanila Js
       </p>
 
       
