@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import classes from "./Employees.module.css";
 import imgMale from "../../assets/imgMale.png";
 import imgFemale from "../../assets/imgFemale.png";
@@ -58,7 +57,13 @@ class Employees extends Component {
 
                   <img
                     className={classes.image}
-                    src={user.pic_url ? user.pic_url : user.gender === 'Male' ? (imgMale) : imgFemale}
+                    src={
+                      user.pic_url
+                        ? user.pic_url
+                        : user.gender === "Male"
+                        ? imgMale
+                        : imgFemale
+                    }
                   />
 
                   <br></br>
@@ -67,9 +72,30 @@ class Employees extends Component {
 
                   <div className={classes["card-body"]}>
                     <ul>
-                      <li>city: {user.city}</li>
-                      <li>mail: {user.email}</li>
-                      <li>gender: {user.gender}</li>
+                      {user.city == null ? null : (
+                        <li>
+                          {" "}
+                          <b>city: </b>
+                          {user.city}
+                        </li>
+                      )}
+                      {user.email == null ? null : (
+                        <li>
+                          {" "}
+                          <b>mail:</b>{" "}
+                          <a
+                            href={`mailto:${user.email}?subject=Hi, ${user.Title}`}
+                          >
+                            {user.email}
+                          </a>{" "}
+                        </li>
+                      )}
+
+                      {user.gender == null ? null : (
+                        <li>
+                          <b>gender: </b> {user.gender}
+                        </li>
+                      )}
                     </ul>
                   </div>
 
@@ -89,20 +115,6 @@ class Employees extends Component {
     }
   }
 
-  // imghandler() {
-  //   let image = imgMale;
-  //   image = this.state.employees.gender === "Female" ? imgMale : imgFemale;
-  //   return image;
-  // }
-
-  // imghandler() {
-  //   {
-  //     this.state.employees.gender === "Male" ? (
-  //       imgFemale
-  //     ) : null;
-  //   }
-  // }
-
   carHandler() {
     let car1 = ' color: "red"  ';
     car1 = this.state.employees.car === "true" ? car1 : ', display: "none" ';
@@ -111,5 +123,3 @@ class Employees extends Component {
 }
 
 export default Employees;
-
-// style={  {display:"none"}  }
