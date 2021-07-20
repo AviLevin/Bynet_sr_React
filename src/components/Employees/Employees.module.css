@@ -16,6 +16,8 @@
   padding: 2px;
   z-index: 1;
   border-style: ridge;
+  background-color: #f7f7f7;
+  border-radius: 8px;
 }
 
 .container {
@@ -32,6 +34,10 @@
   height: 70px;
   background-color: #4267b2;
   text-align: center;
+  border-radius: 8px;
+  position: relative;
+  left: 1px;
+  z-index: -1;
 }
 
 .name {
@@ -41,59 +47,49 @@
 }
 
 .image {
-  width:100px;
-  height:100px;
+  width: 100px;
+  height: 100px;
   z-index: -1;
   margin: -30px 0px 9px 80px;
   border-radius: 50%;
   border: blue;
   border-style: solid;
   border-width: thin;
-  background-image:url('../../assets/imgMale.png');
+  background-image: url("../../assets/imgMale.png");
 }
-
 
 .card-body {
   font-size: 15px;
   font-weight: normal;
- 
 }
 
-.image1{
-  min-width:100px;
-  height:100px;
-  background-color:red;
+.image1 {
+  min-width: 100px;
+  height: 100px;
+  background-color: red;
 }
 
-
-.a{
-  width:400px;
-  height:100px;
-  background-color:orange;
+.a {
+  width: 400px;
+  height: 100px;
+  background-color: orange;
 }
 
-.b{
-  width:400px;
-  height:100px;
-  background-color:green;
+.b {
+  width: 400px;
+  height: 100px;
+  background-color: green;
 }
 
-
-
-.car{
-
-  height:100px;
-  width:100px;
+.car {
+  height: 100px;
+  width: 100px;
   left: 33%;
   position: absolute;
   bottom: 30px;
-  
 }
 
-
-.carIcon{
-
-  height:70px;
-  width:70px;
-
+.carIcon {
+  height: 70px;
+  width: 70px;
 }

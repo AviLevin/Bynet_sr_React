@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Employees.module.css";
-import imgMale from "../../assets/imgMale.png";
-import imgFemale from "../../assets/imgFemale.png";
-import car from "../../assets/car.png";
+
+import Employee from "./Employee/Employee";
 
 class Employees extends Component {
   constructor(props) {
@@ -47,85 +46,23 @@ class Employees extends Component {
         <div className={classes.container}>
           <div className="row">
             <div className="col"></div>
+
             <div className="col-11">
               {employees.map((user) => (
-                <div className={classes.card}>
-                  <div className={classes.cardtop}>
-                    {" "}
-                    <div className={classes.name}>{user.Title} </div>{" "}
-                  </div>
-
-                  <img
-                    className={classes.image}
-                    src={
-                      user.pic_url
-                        ? user.pic_url
-                        : user.gender === "Male"
-                        ? imgMale
-                        : imgFemale
-                    }
-                  />
-
-                  <br></br>
-
-                  <br></br>
-
-                  <div className={classes["card-body"]}>
-                    <ul>
-                      {user.city == null ? null : (
-                        <li>
-                          {" "}
-                          <b>city: </b>
-                          {user.city}
-                        </li>
-                      )}
-                      {user.email == null ? null : (
-                        <li>
-                          {" "}
-                          <b>mail:</b>{" "}
-                          <a
-                            href={`mailto:${user.email}?subject=Hi, ${user.Title}`}
-                          >
-                            {user.email}
-                          </a>{" "}
-                        </li>
-                      )}
-
-                      {user.gender == null ? null : (
-                        <li>
-                          <b>gender: </b> {user.gender}
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-
-                  <br></br>
-                  <div className={classes.car}>
-                    {user.car === true ? (
-                      <img className={classes.carIcon} src={car}></img>
-                    ) : null}
-                  </div>
-                </div>
+                <Employee
+                  id={user.id}
+                  Title={user.Title}
+                  email={user.email}
+                  gender={user.gender}
+                  car={user.car}
+                  pic_url={user.pic_url}
+                />
               ))}
             </div>
             <div className="col"></div>
           </div>
         </div>
       );
-    }
-  }
-
-  imageHandler() {
-    if (this.state.employees.pic_url) return this.state.employees.pic_url;
-    else if (this.state.employees.gender === "Male") return imgMale;
-    else return imgFemale;
-  }
-
-  imageHandlerx() {
-    if (this.bind.user.pic_url) {
-      return this.bind.user.pic_url;
-    } else {
-      return imgMale;
     }
   }
 }
