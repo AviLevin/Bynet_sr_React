@@ -115,10 +115,18 @@ class Employees extends Component {
     }
   }
 
-  carHandler() {
-    let car1 = ' color: "red"  ';
-    car1 = this.state.employees.car === "true" ? car1 : ', display: "none" ';
-    return car1;
+  imageHandler() {
+    if (this.state.employees.pic_url) return this.state.employees.pic_url;
+    else if (this.state.employees.gender === "Male") return imgMale;
+    else return imgFemale;
+  }
+
+  imageHandlerx() {
+    if (this.bind.user.pic_url) {
+      return this.bind.user.pic_url;
+    } else {
+      return imgMale;
+    }
   }
 }
 
